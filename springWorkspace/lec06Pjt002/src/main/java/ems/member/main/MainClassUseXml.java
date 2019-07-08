@@ -37,17 +37,17 @@ public class MainClassUseXml {
 
 		//StudentAssembler assembler = new StudentAssembler();
 		GenericXmlApplicationContext ctx = new GenericXmlApplicationContext("classpath:applicationContext.xml");
-		
+
 		EMSInformationService informationService = ctx.getBean("informationService", EMSInformationService.class);
 		informationService.outputEMSInformation();
-		
+
 		//StudentRegisterService registerService = assembler.getRegisterService();
 		StudentRegisterService registerService = ctx.getBean("registerService", StudentRegisterService.class);
 		for (int i = 0; i < sNums.length; i++) {
 			Student student = new Student(sNums[i], sIds[i], sPws[i], sNames[i], sAges[i], sGenders[i], sMajors[i]);
 			registerService.register(student);
 		}
-		
+
 		//StudentModifyService modifyService = assembler.getModifyService();
 		StudentModifyService modifyService = ctx.getBean("modifyService", StudentModifyService.class);
 		modifyService.modify(new Student("H39lesvj7544vf89", "deer", "00000", "melissa", 26, "W", "Vocal Music"));
@@ -92,7 +92,7 @@ public class MainClassUseXml {
 				System.out.println(student.toString());
 			}
 		}
-		
+
 		ctx.close();
 
 	}
