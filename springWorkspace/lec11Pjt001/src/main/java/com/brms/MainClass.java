@@ -62,8 +62,8 @@ public class MainClass {
 		bookRegisterService.register(new Book("985", "css", false, memberSearchService.searchMember("rabbit")));
 
 		//도서 대여 목록 출력
-		System.out.println("\nbNum\tbTitle\tbCanRen\tbLenderId");
-		System.out.println("\"==================================================================");
+		System.out.println("\nbNum\tbTitle\tbCanRenal\tbLenderId");
+		System.out.println("==================================================================");
 		for (int i = 0; i < bNums.length; i++) {
 			Book book = bookSearchService.searchBook(bNums[i]);
 			System.out.print(book.toString());

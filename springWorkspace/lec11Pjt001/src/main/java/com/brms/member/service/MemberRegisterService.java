@@ -16,4 +16,12 @@ public class MemberRegisterService {
 	public void register(Member member) {
 		memberDao.insert(member);
 	}
+
+	public void initMethod() {
+		System.out.println("init-method ==> MemberRegisterService bean 객체 생성");
+	}
+
+	public void destroyMethod() {
+		System.out.println("destroy-method ==> MemberRegisterService bean 객체 소멸");
+	}
 }
