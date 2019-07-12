@@ -27,6 +27,6 @@ public class MemPhone {
 
 	@Override
 	public String toString() {
-		return "memPhone1 + memPhone2 + memPhone3";
+		return memPhone1  + "-" + memPhone2 + "-" + memPhone3;
 	}
 }

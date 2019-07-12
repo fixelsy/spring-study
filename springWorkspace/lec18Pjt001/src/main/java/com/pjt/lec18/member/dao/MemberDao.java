@@ -21,7 +21,6 @@ public class MemberDao implements IMemberDao {
 	@Override
 	public void memberInsert(String memId, String memPw, String memMail, String memPhone1, String memPhone2, String memPhone3) {
 		System.out.println("==============MemberDao.memberInsert()==============");
-		System.out.println("memId : " + memId + "\t| memPw :" + memPw + "\t| memMail : " + memMail + "\t| memPhone : " + memPhone1 + "-" + memPhone2 + "-" + memPhone3);
 
 		Member member = new Member();
 		member.setMemId(memId);
@@ -49,7 +48,6 @@ public class MemberDao implements IMemberDao {
 	@Override
 	public void memberInsert(Member member) {
 		System.out.println("===========MemberDao.memberInsert(Member)===========");
-		System.out.println(member.toString());
 
 		dbMap.put(member.getMemId(), member);
 
