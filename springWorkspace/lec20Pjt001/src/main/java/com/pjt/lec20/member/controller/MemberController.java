@@ -108,10 +108,16 @@ public class MemberController {
 
 		HttpSession session = request.getSession();
 		Member member = (Member)session.getAttribute("member");
-
 		ModelAndView mav = new ModelAndView();
-		mav.addObject("member", service.memberSearch(member));
-		mav.setViewName("/member/modifyForm");
+
+		//redirect 사용
+		if (member == null) {
+			mav.setViewName("redirect:/");
+		} else {
+			mav.addObject("member", service.memberSearch(member));
+			mav.setViewName("/member/modifyForm");
+		}
+
 
 		return mav;
 	}
@@ -139,10 +145,15 @@ public class MemberController {
 
 		HttpSession session = request.getSession();
 		Member member = (Member)session.getAttribute("member");
-
 		ModelAndView mav = new ModelAndView();
-		mav.addObject("member", member);
-		mav.setViewName("/member/removeForm");
+
+		//redirect 사용
+		if (member == null) {
+			mav.setViewName("redirect:/");
+		} else {
+			mav.addObject("member", member);
+			mav.setViewName("/member/removeForm");
+		}
 
 		return mav;
 	}

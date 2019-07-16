@@ -39,6 +39,7 @@ public class MemberDao implements IMemberDao{
 
 	@Override
 	public Map<String, Member> memberDelete(Member member) {
-		dbMap.remove(member.getMemId());		return dbMap;
+		dbMap.remove(member.getMemId());
+		return dbMap;
 	}
 }

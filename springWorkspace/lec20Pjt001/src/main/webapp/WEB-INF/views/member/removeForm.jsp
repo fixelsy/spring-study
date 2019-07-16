@@ -6,6 +6,7 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>RemoveForm</title>
+	<link rel="stylesheet" type="text/css" href="${cp}/resources/css/normal.css" />
 </head>
 <body>
 	<h1>MEMBER REMOVE</h1>
