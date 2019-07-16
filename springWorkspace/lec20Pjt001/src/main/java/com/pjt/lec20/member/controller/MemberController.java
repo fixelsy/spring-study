@@ -102,6 +102,8 @@ public class MemberController {
 		return "/member/logoutOk";
 	}
 
+
+
 	//Modify
 	@RequestMapping(value="/modifyForm", method=RequestMethod.GET)
 	public ModelAndView modifyForm(HttpServletRequest request) {
@@ -110,14 +112,18 @@ public class MemberController {
 		Member member = (Member)session.getAttribute("member");
 		ModelAndView mav = new ModelAndView();
 
-		//redirect 사용
-		if (member == null) {
+		//Redirect 사용
+		/*if (member == null) {
 			mav.setViewName("redirect:/");
 		} else {
 			mav.addObject("member", service.memberSearch(member));
 			mav.setViewName("/member/modifyForm");
-		}
-
+		}*/
+		
+		
+		//InterCeptor 사용
+		mav.addObject("member", service.memberSearch(member));
+		mav.setViewName("/member/modifyForm");
 
 		return mav;
 	}
@@ -147,13 +153,18 @@ public class MemberController {
 		Member member = (Member)session.getAttribute("member");
 		ModelAndView mav = new ModelAndView();
 
-		//redirect 사용
-		if (member == null) {
+		//Redirect 사용
+		/*if (member == null) {
 			mav.setViewName("redirect:/");
 		} else {
 			mav.addObject("member", member);
 			mav.setViewName("/member/removeForm");
-		}
+		}*/
+		
+		
+		//InterCeptor 사용
+		mav.addObject("member", member);
+		mav.setViewName("/member/removeForm");
 
 		return mav;
 	}

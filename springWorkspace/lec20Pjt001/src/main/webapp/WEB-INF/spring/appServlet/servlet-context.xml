@@ -3,12 +3,12 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:beans="http://www.springframework.org/schema/beans"
 	xmlns:context="http://www.springframework.org/schema/context"
-	xsi:schemaLocation="http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd
-		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
-		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
+		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context-4.0.xsd">
 
 	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
-	
+
 	<!-- Enables the Spring MVC @Controller programming model -->
 	<annotation-driven />
 
@@ -20,9 +20,25 @@
 		<beans:property name="prefix" value="/WEB-INF/views/" />
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
-	
+
 	<context:component-scan base-package="com.pjt.lec20" />
-	
-	
-	
+
+	<interceptors>
+		<interceptor>
+		    <!-- 일부 jsp파일 설정시 -->
+			<mapping path="/member/modifyForm" />
+			<mapping path="/member/removeForm" />
+
+			<!-- 전체 jsp파일에 설정 후 일부jsp를 제외하여 설정시 (작동이 안됨...왜안될깡...) -->
+			<!-- <mapping path="/member/** " />
+			<exclude-mapping path="/member/joinForm"/>
+			<exclude-mapping path="/member/joinOk"/>
+			<exclude-mapping path="/member/loginForm"/>
+			<exclude-mapping path="/member/loginOk"/>
+			<exclude-mapping path="/member/modifyOk"/>
+			<exclude-mapping path="/member/removeOk"/> -->
+			<beans:bean class="com.pjt.lec20.member.MemberLoginInterceptor" />
+		</interceptor>
+	</interceptors>
+
 </beans:beans>
