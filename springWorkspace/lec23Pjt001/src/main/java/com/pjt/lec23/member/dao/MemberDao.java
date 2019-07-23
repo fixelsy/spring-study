@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import com.pjt.lec23.member.Member;
 
+//JDBC·Î ¿¬°á
 @Repository
 public class MemberDao implements IMemberDao {
 

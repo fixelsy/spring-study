@@ -5,12 +5,18 @@ import org.springframework.stereotype.Service;
 
 import com.pjt.lec23.member.Member;
 import com.pjt.lec23.member.dao.MemberDao;
+import com.pjt.lec23.member.dao.MemberDao2;
 
 @Service
 public class MemberService implements IMemberService{
 
+	//JDBC로 연결
+	/*@Autowired
+	MemberDao dao;*/
+
+	//JdbcTemplate로 연결
 	@Autowired
-	MemberDao dao;
+	MemberDao2 dao;
 
 	@Override
 	public void memberRegister(Member member) {
