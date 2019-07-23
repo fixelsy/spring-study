@@ -6,17 +6,22 @@ import org.springframework.stereotype.Service;
 import com.pjt.lec23.member.Member;
 import com.pjt.lec23.member.dao.MemberDao;
 import com.pjt.lec23.member.dao.MemberDao2;
+import com.pjt.lec23.member.dao.MemberDao3;
 
 @Service
 public class MemberService implements IMemberService{
 
 	//JDBC로 연결
-	/*@Autowired
-	MemberDao dao;*/
+//	@Autowired
+//	MemberDao dao;
 
 	//JdbcTemplate로 연결
+//	@Autowired
+//	MemberDao2 dao;
+
+	//스프링 설정 파일을 이용해서 연결
 	@Autowired
-	MemberDao2 dao;
+	MemberDao3 dao;
 
 	@Override
 	public void memberRegister(Member member) {
