@@ -1,5 +1,6 @@
 package com.pjt.lec23.member.dao;
 
+import java.beans.PropertyVetoException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -14,6 +15,7 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.stereotype.Repository;
 
+import com.mchange.v2.c3p0.ComboPooledDataSource;
 import com.pjt.lec23.member.Member;
 
 //JdbcTemplate로 연결
@@ -26,8 +28,8 @@ public class MemberDao2 implements IMemberDao {
 	private String userPw = "tiger"; // DB계정 PW
 
 	// private DriverManagerDataSource dataSource;	// DriverManagerDataSource 1)c3p0
-	private DriverManagerDataSource dataSource; 	// DriverManagerDataSource 2)spring
-	// private DriverManagerDataSource dataSource; //DriverManagerDataSource 3)
+	// private DriverManagerDataSource dataSource; 	// DriverManagerDataSource 2)spring
+	private ComboPooledDataSource dataSource; 		// ComboPooledDataSource   3)c3p0의 모듈
 
 	private JdbcTemplate template;
 
@@ -46,12 +48,25 @@ public class MemberDao2 implements IMemberDao {
 		/**
 		 * DriverManagerDataSource 2)spring
 		 */
-		dataSource = new DriverManagerDataSource();
-		dataSource.setDriverClassName(driver);	// Driver 메모리 로딩
-		dataSource.setUrl(url);					// DriverManager로부터 접속할 수 있는 연결객체를 가져옴 : url
-		dataSource.setUsername(userId);			// DriverManager로부터 접속할 수 있는 연결객체를 가져옴 : id
-		dataSource.setPassword(userPw);			// DriverManager로부터 접속할 수 있는 연결객체를 가져옴 : pw
+//		dataSource = new DriverManagerDataSource();
+//		dataSource.setDriverClassName(driver);	// Driver 메모리 로딩
+//		dataSource.setUrl(url);					// DriverManager로부터 접속할 수 있는 연결객체를 가져옴 : url
+//		dataSource.setUsername(userId);			// DriverManager로부터 접속할 수 있는 연결객체를 가져옴 : id
+//		dataSource.setPassword(userPw);			// DriverManager로부터 접속할 수 있는 연결객체를 가져옴 : pw
 
+
+		/**
+		 * ComboPooledDataSource 3)c3p0의 모듈
+		 */
+		dataSource = new ComboPooledDataSource();
+		try {
+			dataSource.setDriverClass(driver);
+			dataSource.setJdbcUrl(url);
+			dataSource.setUser(userId);
+			dataSource.setPassword(userPw);
+		} catch (PropertyVetoException e) {
+			e.printStackTrace();
+		}
 
 
 		template = new JdbcTemplate();
@@ -98,7 +113,6 @@ public class MemberDao2 implements IMemberDao {
 			}
 		});
 
-
 		return result;
 	}
 
@@ -131,6 +145,8 @@ public class MemberDao2 implements IMemberDao {
 //		});
 
 
+
+
 		/**
 		 * 2nd) template.query(PreparedStatementCreator, RowMapper)
 		 */
@@ -156,10 +172,33 @@ public class MemberDao2 implements IMemberDao {
 //			}
 //		});
 
+
+
+
 		/**
 		 * 3rd) template.query(sql, RowMapper, args)
 		 */
-		members = template.query(sql, new RowMapper<Member>() {
+//		members = template.query(sql, new RowMapper<Member>() {
+//
+//			@Override
+//			public Member mapRow(ResultSet rs, int rowNum) throws SQLException {
+//				Member mem = new Member();
+//				mem.setMemId(rs.getString("memId"));
+//				mem.setMemPw(rs.getString("memPw"));
+//				mem.setMemMail(rs.getString("memMail"));
+//				mem.setMemPurcNum(rs.getInt("memPurcNum"));
+//				return mem;
+//			}
+//
+//		}, member.getMemId(), member.getMemPw());
+
+
+
+
+		/**
+		 * 4th) template.query(sql, Object[args], RowMapper)
+		 */
+		members = template.query(sql, new Object[]{member.getMemId(),  member.getMemPw()}, new RowMapper<Member>() {
 
 			@Override
 			public Member mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -170,8 +209,8 @@ public class MemberDao2 implements IMemberDao {
 				mem.setMemPurcNum(rs.getInt("memPurcNum"));
 				return mem;
 			}
+		});
 
-		}, member.getMemId(), member.getMemPw());
 
 		if(members.isEmpty()) return null;
 
