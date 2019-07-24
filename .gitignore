@@ -20,3 +20,6 @@ springbootWorkspace/Ex03_AnnotationDI/.*
 springbootWorkspace/Ex04_WebBasic/.*
 springbootWorkspace/Ex04_WebBasic/gradl*
 springbootWorkspace/Ex04_WebBasic/settings.*
+springbootWorkspace/Ex05_JspUse/.*
+springbootWorkspace/Ex05_JspUse/gradl*
+springbootWorkspace/Ex05_JspUse/settings.*
