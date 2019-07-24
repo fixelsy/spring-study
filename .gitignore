@@ -17,3 +17,6 @@ springWorkspace/Servers
 springbootWorkspace/Ex01_DI/.*
 springbootWorkspace/Ex02_JavaCodeDI/.*
 springbootWorkspace/Ex03_AnnotationDI/.*
+springbootWorkspace/Ex04_WebBasic/.*
+springbootWorkspace/Ex04_WebBasic/gradl*
+springbootWorkspace/Ex04_WebBasic/settings.*
