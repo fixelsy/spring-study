@@ -35,3 +35,6 @@ springbootWorkspace/Ex08_Lombok/settings.*
 springbootWorkspace/Ex09_Validate/.*
 springbootWorkspace/Ex09_Validate/gradl*
 springbootWorkspace/Ex09_Validate/settings.*
+springbootWorkspace/Ex12_Valid_Annotation/.*
+springbootWorkspace/Ex12_Valid_Annotation/gradl*
+springbootWorkspace/Ex12_Valid_Annotation/settings.*
