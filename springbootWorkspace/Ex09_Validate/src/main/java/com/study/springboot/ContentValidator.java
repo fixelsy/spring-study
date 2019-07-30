@@ -42,6 +42,10 @@ public class ContentValidator implements Validator {
 		}
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "content", "ValidationUtils : content is empty");
 
+		/**
+		 * 내용 검증(Valid_initBinder)
+		 */
+
 	}
 
 }
