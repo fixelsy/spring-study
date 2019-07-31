@@ -41,3 +41,6 @@ springbootWorkspace/Ex12_Valid_Annotation/settings.*
 springbootWorkspace/Ex13_JdbcTemplate/.*
 springbootWorkspace/Ex13_JdbcTemplate/gradl*
 springbootWorkspace/Ex13_JdbcTemplate/settings.*
+springbootWorkspace/Ex14_SimpleBBS/.*
+springbootWorkspace/Ex14_SimpleBBS/gradl*
+springbootWorkspace/Ex14_SimpleBBS/settings.*
