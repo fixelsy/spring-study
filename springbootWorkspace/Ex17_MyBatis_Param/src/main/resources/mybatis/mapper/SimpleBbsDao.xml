@@ -12,13 +12,17 @@
 		SELECT * FROM simple_bbs WHERE id=#{0}
 	</select>
 
-	<insert id="writeDao">
+	<insert id="writeDao" parameterType="java.util.HashMap">
 		INSERT INTO simple_bbs(id, writer, title, content)
-		VALUES (simple_bbs_seq.nextval, #{param1}, #{param2}, #{param3})
+		VALUES (simple_bbs_seq.nextval, #{item1}, #{item2}, #{item3})
 	</insert>
 
 	<delete id="deleteDao">
 		DELETE FROM simple_bbs WHERE id=#{_id}
 	</delete>
+
+	<select id="articleCount" resultType="int">
+		SELECT COUNT(*) FROM simple_bbs
+	</select>
 
 </mapper>
