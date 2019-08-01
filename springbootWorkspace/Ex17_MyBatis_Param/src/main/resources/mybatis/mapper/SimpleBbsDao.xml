@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.study.springboot.dao.ISimpleBbsDao">
+	<select id="listDao" resultType="com.study.springboot.dto.SimpleBbsDto">
+		SELECT * FROM simple_bbs ORDER BY id DESC
+	</select>
+
+	<select id="viewDao" resultType="com.study.springboot.dto.SimpleBbsDto">
+		SELECT * FROM simple_bbs WHERE id=#{0}
+	</select>
+
+	<insert id="writeDao">
+		INSERT INTO simple_bbs(id, writer, title, content)
+		VALUES (simple_bbs_seq.nextval, #{param1}, #{param2}, #{param3})
+	</insert>
+
+	<delete id="deleteDao">
+		DELETE FROM simple_bbs WHERE id=#{_id}
+	</delete>
+
+</mapper>
