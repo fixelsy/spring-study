@@ -17,7 +17,7 @@ public class MyController {
 
 	@RequestMapping("/")
 	public @ResponseBody String root() throws Exception{
-		return "Transaction X (1)";
+		return "Transaction";
 	}
 
 	@RequestMapping("/buy_ticket")
@@ -48,6 +48,22 @@ public class MyController {
 								  Model model)
 	{
 		int nResult = buyTicketSrv.buyTsManager(consumerId, Integer.parseInt(amount), error);
+		model.addAttribute("consumerId", consumerId);
+		model.addAttribute("amount", amount);
+		if(nResult == 1) {
+			return "buy_ticket_end";
+		} else {
+			return "buy_ticket_error";
+		}
+	}
+
+	@RequestMapping("/buy_ticket_card_tsTemplate")
+	public String buy_ticket_card_tsTemplate(@RequestParam("consumerId") String consumerId,
+								  @RequestParam("amount") String amount,
+								  @RequestParam("error") String error,
+								  Model model)
+	{
+		int nResult = buyTicketSrv.buyTsTemplate(consumerId, Integer.parseInt(amount), error);
 		model.addAttribute("consumerId", consumerId);
 		model.addAttribute("amount", amount);
 		if(nResult == 1) {

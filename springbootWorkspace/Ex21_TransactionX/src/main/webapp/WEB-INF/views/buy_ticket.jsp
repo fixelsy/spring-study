@@ -26,6 +26,13 @@
 		<input type="submit" value="구매(Transaction Manager)"><br />
 	</form>
 
+	<hr>
+	<form action="buy_ticket_card_tsTemplate">
+		고객 아이디 : <input type="text" name="consumerId"> <br/>
+		티켓 구매수 : <input type="text" name="amount"> <br/>
+		에러 발생여부 : <input type="text" name="error" value="0"> <br/>
+		<input type="submit" value="구매(Transaction Template)"><br />
+	</form>
 
 	<hr> 에러 발생 여부에 1을 입력하면 에러가 발생합니다. <hr>
 </body>
