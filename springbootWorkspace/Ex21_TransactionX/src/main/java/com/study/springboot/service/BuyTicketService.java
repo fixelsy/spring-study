@@ -5,6 +5,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.TransactionDefinition;
 import org.springframework.transaction.TransactionStatus;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.support.TransactionCallbackWithoutResult;
 import org.springframework.transaction.support.TransactionTemplate;
 
@@ -84,6 +86,31 @@ public class BuyTicketService implements IBuyTicketService {
 			return 1;
 		} catch (Exception e) {
 			System.out.println("[TransactionTemplate] Rollback");
+			return 0;
+		}
+	}
+
+	//@Transactional(propagation=Propagation.REQUIRES_NEW)
+	@Transactional(propagation=Propagation.REQUIRED)
+	@Override
+	public int buyTsPropagation(String consumerId, int amount, String error) {
+		try {
+			transactionTemplate.execute(new TransactionCallbackWithoutResult() {
+
+				@Override
+				protected void doInTransactionWithoutResult(TransactionStatus status) {
+					transaction1dao.pay(consumerId, amount);
+
+					//의도적 에러 발생
+					if (error.equals("1")) { int n = 10/0 ;}
+
+					transaction2dao.pay(consumerId, amount);
+				}
+			});
+
+			return 1;
+		} catch (Exception e) {
+			System.out.println("[Transaction Propagation #2] Rollback");
 			return 0;
 		}
 	}
