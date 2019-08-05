@@ -25,12 +25,21 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.anyRequest().authenticated();
 
 		http.formLogin()
+				.loginPage("/loginForm")					//default : /login
+				.loginProcessingUrl("/j_spring_security_check")
+				.failureUrl("/loginError")					//default : /login?error
+				//.defaultSuccessUrl("/")
+				.usernameParameter("j_username")			//default : j_username
+				.passwordParameter("j_password")			//default : j_password
 				.permitAll();
 
 		http.logout()
+				.logoutUrl("/logout")	//default
+				.logoutSuccessUrl("/")
 				.permitAll();
 
-		super.configure(http);
+		//ssl을 사용하지 않으면 true로 사용
+		http.csrf().disable();
 	}
 
 	@Autowired
