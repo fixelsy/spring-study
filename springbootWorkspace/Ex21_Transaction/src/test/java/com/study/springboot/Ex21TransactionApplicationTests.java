@@ -7,7 +7,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class Ex21TransactionXApplicationTests {
+public class Ex21TransactionApplicationTests {
 
 	@Test
 	public void contextLoads() {
