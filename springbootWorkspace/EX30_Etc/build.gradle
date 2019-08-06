@@ -16,6 +16,9 @@ repositories {
 
 ext['tomcat.version'] = '8.5.38'
 
+bootWar.enabled = false
+war.enabled = true
+
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
