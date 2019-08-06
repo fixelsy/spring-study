@@ -65,3 +65,6 @@ springbootWorkspace/Ex21_Transaction/settings.*
 springbootWorkspace/Ex25_Security/.*
 springbootWorkspace/Ex25_Security/gradl*
 springbootWorkspace/Ex25_Security/settings.*
+springbootWorkspace/Ex30_Webjars/.*
+springbootWorkspace/Ex30_Webjars/gradl*
+springbootWorkspace/Ex30_Webjars/settings.*
