@@ -1,5 +1,7 @@
 package com.study.springboot.auth;
 
+import javax.sql.DataSource;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -8,7 +10,6 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 
 @Configuration
@@ -20,6 +21,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
+		//System.out.println("123(encode) : " + passwordEncoder().encode("123")); //$2a$10$1NdygcF51AsKqEb/H1.9zeES43tMaiOam1aj0kqerU5EUJSzhqWB.
+
 		http.authorizeRequests()
 				.antMatchers("/").permitAll()
 				.antMatchers("/css/**", "/js/**", "/img/**").permitAll()
@@ -77,6 +80,22 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 			.and()
 			.withUser("admin").password(passwordEncoder().encode("1234")).roles("ADMIN");	//ADMIN => ID:user, PW:1234
 			// ROLE_ADMIN 에서 ROLE_는 자동으로 붙는다.
+	}
+
+
+	/**
+	 * DataBase 연동으로 데이터 가져오기
+	 */
+	@Autowired
+	private DataSource dataSource;
+
+	@Override
+	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+		auth.jdbcAuthentication()
+			.dataSource(dataSource)
+			.usersByUsernameQuery("SELECT name AS userName, password, enabled FROM user_list WHERE name = ?")
+			.authoritiesByUsernameQuery("SELECT name AS userName, authority FROM user_list WHERE name = ?")
+			.passwordEncoder(new BCryptPasswordEncoder());
 	}
 
 	// passwordEncoder() 추가
