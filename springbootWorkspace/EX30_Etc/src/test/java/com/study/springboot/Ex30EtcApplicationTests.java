@@ -7,7 +7,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class Ex30WebjarsApplicationTests {
+public class Ex30EtcApplicationTests {
 
 	@Test
 	public void contextLoads() {

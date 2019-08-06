@@ -4,10 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class Ex30WebjarsApplication {
+public class Ex30EtcApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(Ex30WebjarsApplication.class, args);
+		SpringApplication.run(Ex30EtcApplication.class, args);
 	}
 
 }
