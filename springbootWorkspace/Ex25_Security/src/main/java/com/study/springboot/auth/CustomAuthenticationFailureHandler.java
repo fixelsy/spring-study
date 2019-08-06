@@ -43,8 +43,14 @@ public class CustomAuthenticationFailureHandler implements AuthenticationFailure
 		request.getRequestDispatcher("/sChkLoginForm?error=true").forward(request, response);
 	}
 
-	//비밀번호 3회 이상 틀릴 시 계정 잠금 처리
+	//비밀번호 3회 이상 틀릴 시 계정 잠금 처리(예시)
 	public void loginFailureCount(String loginId) {
-
+		/*
+		userDao.countFailure(username);					//틀린 횟수 업데이트
+		int cnt = userDao.checkFailureCount(username); 	//틀린 횟수 조회
+		if (cnt == 3) {
+			userDao.disabledUsername(username);			//계정 잠금 처리
+		}
+		*/
 	}
 }
