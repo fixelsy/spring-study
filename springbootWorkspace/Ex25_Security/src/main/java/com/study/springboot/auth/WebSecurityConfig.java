@@ -24,17 +24,29 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers("/admin/**").hasRole("ADMIN")
 				.anyRequest().authenticated();
 
+		/**
+		 * Spring 제공 Login 페이지 사용하기
+		 */
+//		http.formLogin()									//default : /login
+//			.permitAll();
+//
+//		http.logout()
+//			.permitAll();
+
+		/**
+		 * Custom Login 페이지 만들어서 사용하기
+		 */
 		http.formLogin()
-				.loginPage("/loginForm")					//default : /login
+				.loginPage("/customLoginForm")				//default : /login
 				.loginProcessingUrl("/j_spring_security_check")
-				.failureUrl("/loginError")					//default : /login?error
+				.failureUrl("/customLoginError")			//default : /login?error
 				//.defaultSuccessUrl("/")
 				.usernameParameter("j_username")			//default : j_username
 				.passwordParameter("j_password")			//default : j_password
 				.permitAll();
 
 		http.logout()
-				.logoutUrl("/logout")	//default
+				.logoutUrl("/customLogout")					//default
 				.logoutSuccessUrl("/")
 				.permitAll();
 

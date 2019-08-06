@@ -8,10 +8,12 @@
 <title>LoginForm</title>
 </head>
 <body>
-	<h1>loginError.jsp</h1>
+	<h1>customLoginForm.jsp</h1>
 
-	로그인 실패<br><p>
-
-	<a href=loginForm>로그인 페이지로 가기</a>
+	<form action="<c:url value="j_spring_security_check" />" method="post">
+		ID : <input type="text" name="j_username"><br />
+		PW : <input type="text" name="j_password"><br />
+		<input type="submit" value="LOGIN"><br />
+	</form>
 </body>
 </html>

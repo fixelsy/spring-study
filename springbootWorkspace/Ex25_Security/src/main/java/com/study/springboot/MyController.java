@@ -27,13 +27,20 @@ public class MyController {
 		return "admin/welcome3";
 	}
 
-	@RequestMapping("/loginForm")
+
+	/**
+	 * Custom Login 페이지 만들어서 사용하기
+	 */
+	@RequestMapping("/customLoginForm")
 	public String loginForm() {
-		return "security/loginForm";
+		return "securityCustom/customLoginForm";
 	}
 
-	@RequestMapping("/loginError")
+	/**
+	 * Custom Login 페이지 만들어서 사용하기
+	 */
+	@RequestMapping("/customLoginError")
 	public String loginError() {
-		return "security/loginError";
+		return "securityCustom/customLoginError";
 	}
 }
