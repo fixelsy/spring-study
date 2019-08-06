@@ -32,7 +32,7 @@ public class MyController {
 	 * Custom Login 페이지 만들어서 사용하기
 	 */
 	@RequestMapping("/customLoginForm")
-	public String loginForm() {
+	public String customLoginForm() {
 		return "securityCustom/customLoginForm";
 	}
 
@@ -40,7 +40,14 @@ public class MyController {
 	 * Custom Login 페이지 만들어서 사용하기
 	 */
 	@RequestMapping("/customLoginError")
-	public String loginError() {
+	public String customLoginError() {
 		return "securityCustom/customLoginError";
 	}
+
+
+	@RequestMapping("/sChkLoginForm")
+	public String sChkLoginForm() {
+		return "securityStatusCheck/loginForm";
+	}
+
 }

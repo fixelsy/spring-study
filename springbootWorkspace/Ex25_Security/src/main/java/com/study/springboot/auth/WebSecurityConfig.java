@@ -9,10 +9,14 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+
+	@Autowired
+	AuthenticationFailureHandler authenticationFailureHandler;
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
@@ -36,17 +40,29 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		/**
 		 * Custom Login 페이지 만들어서 사용하기
 		 */
+//		http.formLogin()
+//				.loginPage("/customLoginForm")				//default : /login
+//				.loginProcessingUrl("/j_spring_security_check")
+//				.failureUrl("/customLoginError")			//default : /login?error
+//				//.defaultSuccessUrl("/")
+//				.usernameParameter("j_username")			//default : j_username
+//				.passwordParameter("j_password")			//default : j_password
+//				.permitAll();
+
+		/**
+		 * Security Status Check하기
+		 */
 		http.formLogin()
-				.loginPage("/customLoginForm")				//default : /login
-				.loginProcessingUrl("/j_spring_security_check")
-				.failureUrl("/customLoginError")			//default : /login?error
-				//.defaultSuccessUrl("/")
-				.usernameParameter("j_username")			//default : j_username
-				.passwordParameter("j_password")			//default : j_password
-				.permitAll();
+			.loginPage("/sChkLoginForm")					//default : /login
+			.loginProcessingUrl("/j_spring_security_check")
+			//.failureUrl("/sChkLoginForm?error")			//default : /login?error -> 로그인시 에러 발생 시 로그인에러페이지가 아닌 다시 로그인 페이지로
+			.failureHandler(authenticationFailureHandler)	//사용자 지정 Error 핸들러 사용하기
+			.usernameParameter("j_username")				//default : j_username
+			.passwordParameter("j_password")				//default : j_password
+			.permitAll();
 
 		http.logout()
-				.logoutUrl("/customLogout")					//default
+				.logoutUrl("/logout")					//default
 				.logoutSuccessUrl("/")
 				.permitAll();
 
